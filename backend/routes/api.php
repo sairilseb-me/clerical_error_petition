@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/descriptions', [DescriptionItemController::class, 'index']);
+Route::post('/descriptions', [DescriptionItemController::class, 'store']);

@@ -1,5 +1,5 @@
 <template>
-    <Dialog v-model:visible="visible" :style="{width: '25rem'}">
+    <Dialog v-model:visible="visible" :style="{width: '25rem'}" @hide="closeDialog">
         <template #header>
             <h1 class="text-2xl font-semibold">Add Description</h1>
         </template>
@@ -47,7 +47,7 @@ const addDescription = () => {
     axios.post('/descriptions', {name: description.value})
     .then(response => {
         if (response.status === 200) {
-            store.showToast('success', 'Success', 'Succesffully added description.')
+            toast.showToast('success', 'Success', 'Succesffully added description.')
             closeDialog()
         }
     }).catch(error => {
@@ -56,7 +56,7 @@ const addDescription = () => {
 }
 
 const closeDialog = () => {
-    emits('update:visible', false)
+    emits('update:visible')
     resetInput()
 }
 
