@@ -26,7 +26,7 @@
                 </template>
             <Column v-for="header in headers" :key="header.field" :header="header.header" :field="header.field">
             <template v-if="header.field == 'actions'" #body="{data}">
-                    <Button icon="pi pi-trash" text class="p-button-rounded p-button-danger p-button-outlined" />
+                    <Button icon="pi pi-trash" text class="p-button-rounded p-button-danger p-button-outlined" @click="(removeDescription(data.id))" />
                 </template>
             </Column>
         </DataTable>
@@ -59,12 +59,17 @@ const headers = [
 // add data to descriptions to be displayed in the table
 const addDescription = () => {
     descriptions.value.push({
+        id: descriptions.value.length + 1,
         description: description.value,
         from: from.value,
         to: to.value
     })
     showAddNewDescriptionInput.value = false
     resetInput()
+}
+
+const removeDescription = (id) => {
+    descriptions.value = descriptions.value.filter((description) => description.id !== id)
 }
 
 // get descriptions from the database
