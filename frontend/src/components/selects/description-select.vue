@@ -4,30 +4,29 @@
 
 
 <script setup>
-import { ref } from 'vue';
-import axios from '@axios'
-
+import { ref, watch } from 'vue';
 
 const selected = ref(null)
 
-const items = ref([])
+
+const props = defineProps({
+    items: {
+        type: Array,
+        default: []
+    }
+})
+
+const items = ref(props.items)
+
+watch(() => props.items, (value) => {
+    items.value = value
+})  
 
 const emits = defineEmits(['add'])
-
-const getItems = () => {
-    axios.get('/descriptions')
-    .then(response => {
-        items.value = response.data.descriptions
-    }).catch(error => {
-        console.log(error)
-    })
-}
 
 const addDescription = () => {
     emits('add', selected.value)
 }
 
-
-getItems()
 
 </script>
