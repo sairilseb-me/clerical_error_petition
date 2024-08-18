@@ -6,6 +6,8 @@
                 <Step value="2">Document Owner's Data</Step>
                 <Step value="3">Payment Data</Step>
                 <Step value="4">Subject for Correction</Step>
+                <Step value="5">Document Submitted</Step>
+                <Step value="6">Actions taken by CCR</Step>
             </StepList>
             <StepPanels>
                 <StepPanel v-slot="{ activateCallback }" value="1">
@@ -84,6 +86,28 @@
                         </div>
                     </div>
                 </StepPanel>
+                <StepPanel v-slot="{activateCallback}" value="5">
+                    <div class="flex flex-col">
+                        <div class="flex flex-col">
+                            <DocumentSubmittedTable />
+                        </div>
+                        <div class="pt-6 flex justify-between">
+                            <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('4')" />
+                            <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('6')" />
+                        </div>
+                    </div>
+                </StepPanel>
+                <StepPanel v-slot="{activateCallback}" value="6">
+                    <div class="flex flex-col">
+                        <div>
+                            <SubjectForCorrectionTable />
+                        </div>
+                        <div class="pt-6 flex justify-between">
+                            <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('5')" />
+                            <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('4')" />
+                        </div>
+                    </div>
+                </StepPanel>
             </StepPanels>
         </Stepper>
     </Dialog>
@@ -92,6 +116,7 @@
 <script setup>
 import LiveBirthRadio from '@/components/radio-buttons/live-birth-radio.vue';
 import SubjectForCorrectionTable from '@/components/tables/subject-for-correction-table.vue';
+import DocumentSubmittedTable from '@/components/tables/document-submitted-table.vue';
 import { defineProps, defineEmits } from 'vue';
 import { ref, watch } from 'vue';
 

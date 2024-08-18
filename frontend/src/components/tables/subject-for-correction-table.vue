@@ -4,7 +4,7 @@
             <template #header>
                     <div class="flex flex-col gap-y-6">
                         <div class="flex justify-end w-30 gap-y-4">
-                            <Button label="Add Description" icon="pi pi-fw pi-plus" severity="info" raised @click="showAddNewDescriptionInput = true"></Button>
+                            <Button label="Add Description" icon="pi pi-fw pi-plus" severity="info" @click="showAddNewDescriptionInput = true"></Button>
                         </div>
                         <div v-if="showAddNewDescriptionInput" class="flex flex-col gap-y-6">
                             <div class="grid grid-cols-2 gap-4">
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import DescriptionSelect from '@/components/selects/description-select.vue';
 import DescriptionDialog from '@/components/dialogs/description-dialog.vue';
 import axios from '@axios';
@@ -77,7 +77,6 @@ const getDescriptionItems = () => {
     axios.get('/descriptions')
     .then(response => {
         descriptionItems.value = response.data.descriptions
-        getDescriptionItems()
     }).catch(error => {
         console.log(error)
     })
