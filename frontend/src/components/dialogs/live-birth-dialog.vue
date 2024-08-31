@@ -82,7 +82,7 @@
                         </div>
                         <div class="pt-6 flex justify-between">
                             <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('3')" />
-                            <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('4')" />
+                            <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('5')" />
                         </div>
                     </div>
                 </StepPanel>
@@ -98,10 +98,9 @@
                     </div>
                 </StepPanel>
                 <StepPanel v-slot="{activateCallback}" value="6">
-                    <div class="flex flex-col">
-                        <div>
-                            <SubjectForCorrectionTable />
-                        </div>
+                    <div class="flex flex-col gap-y-2">
+                        <h3 class="text-lg font-semibold">Actions taken by CCR</h3>
+                        <Textarea></Textarea>
                         <div class="pt-6 flex justify-between">
                             <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('5')" />
                             <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('4')" />
